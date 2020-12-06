@@ -1,20 +1,71 @@
 body {
   font-family: 'Fira Sans', "Noto Sans JP", Tahoma, Calibri, Helvetica, Arial,sans-serif;
+  background: #1b222c;
 }
 
 .drop-container {
   margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 .drop-zone {
-  border: 1px solid black;
+  display: grid;
+  color: #3f454d;
+  border-radius: 24px;
+  padding: 20px;
   width: 50vw;
   height: 10vw;
   text-align: center;
   margin: 0 auto;
-  
+  background: radial-gradient(circle at 100% 50%,#85e0ce,#e7e1a0);;
+  transition: all .2s ease-out; 
 }
 
 .drop-zone p {
   margin: auto;
+}
+
+.drop-zone.active{
+  box-shadow : 0px 8px 10px rgba(0,0,0,0.5);
+  border-color: black;
+  background: #58d7be;
+}
+
+.dropped-file-info {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.users-list {
+  width: 70vw;
+  text-align: center;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
+
+.user-container {
+  color: #cdced0;
+  border: 1px solid #007e79;
+  margin: 10px;
+  border-radius: 24px;
+  padding: 0 5px;
+  transition: all .2s ease-out;
+}
+
+.user-name {
+  font-weight: 700;
+}
+
+.user-container:hover {
+  background: #58d7be;
+  color:#1b222c;
+}
+
+.user-name-empty, 
+.user-address-empty,
+.empty {
+  color: #6d7178;
 }
