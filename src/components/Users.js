@@ -5,6 +5,13 @@ function Users(props) {
   console.log('users:', users);
   return (
     <div className="users-list">
+       {users.map((user, index) => (
+        <div key={index} className="user-container">
+          <p>{user.address}</p>
+          <p>{user.name}</p>
+          
+        </div>
+      ))}
       
     
     </div>
