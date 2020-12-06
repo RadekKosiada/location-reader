@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import DropFile from "./components/DropFile";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,6 +9,9 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
+         <DropFile
+          
+        />
        
       </div>
     );
