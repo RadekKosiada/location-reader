@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import keys from "./keys";
 import DropFile from "./components/DropFile";
 
 class App extends React.Component {
@@ -21,7 +22,7 @@ class App extends React.Component {
         console.log("onload");
         const usersArray = JSON.parse(r.target.result);
         console.log(usersArray);
-
+        self.getAddresses(usersArray);
       };
       reader.readAsText(file);
       self.setState({ value: reader });
@@ -34,6 +35,27 @@ class App extends React.Component {
     document.querySelector(".drop-zone").classList.add("active");
     e.stopPropagation();
     e.preventDefault();
+  }
+
+  getAddresses(array) {
+    console.log("getAddresses fired", array);
+    let usersData = [];
+    array.map(user => {
+      fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${user.Latitude}%2C${user.Longitude}&apiKey=${keys.API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+          usersData.push({
+            name: user.Name,
+            address: data.items[0].address.label
+          });
+          this.forceUpdate();
+        })
+        .catch(error => {
+          console.error("Error:", error.message);
+        });
+    });
+
+    console.log("usersData: ", usersData);
   }
 
   render () {
