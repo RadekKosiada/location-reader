@@ -2,10 +2,14 @@ import React from "react";
 import './App.css';
 import keys from "./keys";
 import DropFile from "./components/DropFile";
+import Users from "./components/Users.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      users: []
+    };
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleFileSelect = this.handleFileSelect.bind(this);
   }
@@ -56,6 +60,9 @@ class App extends React.Component {
     });
 
     console.log("usersData: ", usersData);
+    this.setState({
+      users: usersData
+    });
   }
 
   render () {
@@ -65,7 +72,7 @@ class App extends React.Component {
           handleDragOver={this.handleDragOver}
           handleFileSelect={this.handleFileSelect}
         />
-       
+       <Users usersArray={this.state.users} />
       </div>
     );
   }
