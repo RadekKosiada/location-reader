@@ -43,14 +43,17 @@ class App extends React.Component {
 
   getAddresses(array) {
     let usersData = []; 
+    // iterating through the array sending a request for each user from the json file
     array.forEach(user => {
       fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${user.Latitude}%2C${user.Longitude}&apiKey=${keys.API_KEY}`)
         .then(response => response.json())
         .then(data => {
+          //saving names and addresses in an array
           usersData.push({
             name: user.Name,
             address: data.items[0].address.label
           });
+          // forcing the page to re-render after getting data
           this.forceUpdate();
         })
         .catch(error => {
