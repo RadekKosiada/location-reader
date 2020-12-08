@@ -23,9 +23,7 @@ class App extends React.Component {
         reader = new FileReader(),
         self = this;
       reader.onload = function(r) {
-        console.log("onload");
         const usersArray = JSON.parse(r.target.result);
-        console.log(usersArray);
         self.getAddresses(usersArray);
       };
       reader.readAsText(file);
@@ -42,7 +40,6 @@ class App extends React.Component {
   }
 
   getAddresses(array) {
-    console.log("getAddresses fired", array);
     let usersData = [];
     array.map(user => {
       fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${user.Latitude}%2C${user.Longitude}&apiKey=${keys.API_KEY}`)
@@ -58,8 +55,6 @@ class App extends React.Component {
           console.error("Error:", error.message);
         });
     });
-
-    console.log("usersData: ", usersData);
     this.setState({
       users: usersData
     });
