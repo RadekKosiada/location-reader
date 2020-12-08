@@ -65,7 +65,6 @@ body {
 }
 
 .user-name-empty, 
-.user-address-empty,
-.empty {
+.user-address-empty {
   color: #6d7178;
 }
