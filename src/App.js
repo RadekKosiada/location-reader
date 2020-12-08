@@ -23,7 +23,9 @@ class App extends React.Component {
         reader = new FileReader(),
         self = this;
       reader.onload = function(r) {
+        // getting data from json and saving in a variable
         const usersArray = JSON.parse(r.target.result);
+        // calling getAddresses method with usersArray as an argument
         self.getAddresses(usersArray);
       };
       reader.readAsText(file);
@@ -40,8 +42,8 @@ class App extends React.Component {
   }
 
   getAddresses(array) {
-    let usersData = [];
-    array.map(user => {
+    let usersData = []; 
+    array.forEach(user => {
       fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${user.Latitude}%2C${user.Longitude}&apiKey=${keys.API_KEY}`)
         .then(response => response.json())
         .then(data => {
